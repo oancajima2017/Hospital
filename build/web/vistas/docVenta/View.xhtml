@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocVentaViewDlg" widgetVar="DocVentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.ViewDocVentaTitle}">
+            <h:form id="DocVentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{docVentaController.selected != null}">
+                        <h:outputText value="Código"/>
+                        <h:outputText value="#{docVentaController.selected.ncodDoc}" title="#{vistas.ViewDocVentaTitle_ncodDoc}"/>
+                        <h:outputText value="Número del Documento"/>
+                        <h:outputText value="#{docVentaController.selected.numDoc}" title="#{vistas.ViewDocVentaTitle_numDoc}"/>
+                        <h:outputText value="Documento"/>
+                        <h:outputText value="#{docVentaController.selected.tipDoc}" title="#{vistas.ViewDocVentaTitle_tipDoc}"/>
+                        <h:outputText value="Ingreso del Documento"/>
+                        <h:outputText value="#{docVentaController.selected.fchingDoc}" title="#{vistas.ViewDocVentaTitle_fchingDoc}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Monto"/>
+                        <h:outputText value="#{docVentaController.selected.montDoc}" title="#{vistas.ViewDocVentaTitle_montDoc}"/>
+                        <h:outputText value="Donación"/>
+                        <h:outputText value="#{docVentaController.selected.dondoc}" title="#{vistas.ViewDocVentaTitle_dondoc}"/>
+                        <h:outputText value="Observación"/>
+                        <h:outputText value="#{docVentaController.selected.obsDoc}" title="#{vistas.ViewDocVentaTitle_obsDoc}"/>
+                        <h:outputText value="Código Paciente"/>
+                        <h:outputText value="#{docVentaController.selected.codpac}" title="#{vistas.ViewDocVentaTitle_codpac}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vistas.Close}" onclick="DocVentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.EditUsuarioTitle}">
+            <h:form id="UsuarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                        <p:outputLabel value="Usuario" for="codusu"/>
+                        <p:inputText id="codusu" readonly="true" value="#{usuarioController.selected.codusu}" title="#{vistas.EditUsuarioTitle_codusu}" required="true" requiredMessage="#{vistas.EditUsuarioRequiredMessage_codusu}"/>
+                        <p:outputLabel value="Nombres" for="nomusu" />
+                        <p:inputText id="nomusu" value="#{usuarioController.selected.nomusu}" title="#{vistas.EditUsuarioTitle_nomusu}" />
+                        <p:outputLabel value="Usuario" for="usuusu" />
+                        <p:inputText id="usuusu" value="#{usuarioController.selected.usuusu}" title="#{vistas.EditUsuarioTitle_usuusu}" />
+                        <p:outputLabel value="DNI" for="dniusu" />
+                        <p:inputText id="dniusu" value="#{usuarioController.selected.dniusu}" title="#{vistas.EditUsuarioTitle_dniusu}" />
+                        <p:outputLabel value="Ingreso" for="ingusu" />
+                        <p:calendar id="ingusu" pattern="MM/dd/yyyy" value="#{usuarioController.selected.ingusu}" title="#{vistas.EditUsuarioTitle_ingusu}"  showOn="button"/>
+                        <p:outputLabel value="Teléfono" for="telfusu" />
+                        <p:inputText id="telfusu" value="#{usuarioController.selected.telfusu}" title="#{vistas.EditUsuarioTitle_telfusu}" />
+                        <p:outputLabel value="Fecha" for="fnacusu" />
+                        <p:calendar id="fnacusu" pattern="MM/dd/yyyy" value="#{usuarioController.selected.fnacusu}" title="#{vistas.EditUsuarioTitle_fnacusu}"  showOn="button"/>
+                        <p:outputLabel value="Cargo" for="cargusu" />
+                        <p:inputText id="cargusu" value="#{usuarioController.selected.cargusu}" title="#{vistas.EditUsuarioTitle_cargusu}" />
+                        <p:outputLabel value="Dirección" for="dirusu" />
+                        <p:inputText id="dirusu" value="#{usuarioController.selected.dirusu}" title="#{vistas.EditUsuarioTitle_dirusu}" />
+                        <p:outputLabel value="Ubigeo" for="ubigeo" />
+                        <p:inputText id="ubigeo" value="#{usuarioController.selected.ubigeo}" title="#{vistas.EditUsuarioTitle_ubigeo}" />
+                        <p:outputLabel value="Nivel" for="levusu" />
+                        <p:selectOneMenu value="#{usuarioController.selected.levusu}" id="levusu" 
+                                         required="true" requiredMessage="Seleccione Nivel">
+                            <f:selectItem itemLabel="Seleccionar Nivel"/>
+                            <f:selectItem itemLabel="Administrador" itemValue="1"/>
+                            <f:selectItem itemLabel="Operativo" itemValue="2"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.update}" value="#{vistas.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="UsuarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

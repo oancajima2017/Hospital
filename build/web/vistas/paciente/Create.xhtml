@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PacienteCreateDlg" widgetVar="PacienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Registrar Nuevo Paciente">
+            <h:form id="PacienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pacienteController.selected != null}">
+                        <p:outputLabel value="Código" for="codpac" />
+                        <p:inputText id="codpac" value="#{pacienteController.selected.codpac}" title="#{vistas.CreatePacienteTitle_codpac}" required="true" requiredMessage="CAMPO OBLIGATORIO"/>
+                        <p:outputLabel value="Nombres" for="nompac" />
+                        <p:inputText id="nompac" value="#{pacienteController.selected.nompac}" title="#{vistas.CreatePacienteTitle_nompac}" required="true" requiredMessage="CAMPO OBLIGATORIO"/>
+                        <p:outputLabel value="Apellidos" for="apepac" />
+                        <p:inputText id="apepac" value="#{pacienteController.selected.apepac}" title="#{vistas.CreatePacienteTitle_apepac}" required="true" requiredMessage="CAMPO OBLIGATORIO"/>
+                        <p:outputLabel value="Sexo" for="sexpac" />
+                        <p:inputText id="sexpac" value="#{pacienteController.selected.sexpac}" title="#{vistas.CreatePacienteTitle_sexpac}" required="true" requiredMessage="CAMPO OBLIGATORIO"/>
+                        <p:outputLabel value="DNI" for="dnipac" />
+                        <p:inputText id="dnipac" value="#{pacienteController.selected.dnipac}" title="#{vistas.CreatePacienteTitle_dnipac}" required="true" requiredMessage="CAMPO OBLIGATORIO"/>
+                        <p:outputLabel value="Nacimiento" for="fnpac" />
+                        <p:calendar id="fnpac" pattern="MM/dd/yyyy" value="#{pacienteController.selected.fnpac}" title="#{vistas.EditPacienteTitle_fnpac}"  showOn="button"/>
+                        <p:outputLabel value="Dirección" for="dirpac" />
+                        <p:inputText id="dirpac" value="#{pacienteController.selected.dirpac}" title="#{vistas.CreatePacienteTitle_dirpac}" />
+                        
+                        <p:outputLabel value="Departamento" for="ubigeo" />
+                     
+                          
+                    <p:selectOneMenu value="#{ubigeoController.selecdepartamento}">
+                        <f:selectItem itemLabel="seleccione" 
+                                      itemValue="" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{ubigeoController.lstdpt}" 
+                                       var="dpt" itemLabel="#{dpt.dpto}"
+                                       itemValue="#{dpt}"/>
+                        <p:ajax event="change" 
+                                update="pro" 
+                                listener="#{ubigeoController.cambiaprov()}"/>
+                    </p:selectOneMenu> 
+                        
+                        <p:outputLabel value="Provincia" for="ubigeo" />
+                     
+                    <p:selectOneMenu id="pro" value="#{ubigeoController.selecdeprov}">
+                        <f:selectItem itemLabel="seleccione"
+                                      itemValue="" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{ubigeoController.lstpro}" 
+                                       var="prov" 
+                                       itemLabel="#{prov.prov}" 
+                                       itemValue="#{prov}"/>
+                        <p:ajax event="change" 
+                                update="ubigeo"
+                                listener="#{ubigeoController.cambiDistri()}"/>
+                    </p:selectOneMenu> 
+                    
+                       <p:outputLabel value="Distrito" for="ubigeo" />
+                      
+                    <p:selectOneMenu id="ubigeo" value="#{pacienteController.selected.ubigeo}" title="#{vistas.CreatePacienteTitle_ubigeo}" >
+                        <f:selectItem itemLabel="seleccione"
+                                      itemValue="" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{ubigeoController.lstdist}"
+                                       var="dis"
+                                       itemLabel="#{dis.dist}"
+                                       itemValue="#{dis.ubigeo}"/>
+                       
+                    </p:selectOneMenu>                       
+                        <p:outputLabel value="Teléfono" for="telfpac" />
+                        <p:inputText id="telfpac" value="#{pacienteController.selected.telfpac}" title="#{vistas.CreatePacienteTitle_telfpac}" />
+                        <p:outputLabel value="Email" for="emailpac" />
+                        <p:inputText id="emailpac" value="#{pacienteController.selected.emailpac}" title="#{vistas.CreatePacienteTitle_emailpac}" />
+                        <p:outputLabel value="Historia Clínica" for="hcpac" />
+                        <p:inputText id="hcpac" value="#{pacienteController.selected.hcpac}" title="#{vistas.CreatePacienteTitle_hcpac}" />
+                        <p:outputLabel value="Estado" for="estpac" />
+                        <p:inputText id="estpac" value="#{pacienteController.selected.estpac}" title="#{vistas.CreatePacienteTitle_estpac}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pacienteController.create}" value="#{vistas.Save}" update="display,:PacienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'PacienteCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="PacienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

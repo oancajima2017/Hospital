@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioCreateDlg" widgetVar="UsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreateUsuarioTitle}">
+            <h:form id="UsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                        <p:outputLabel value="Código" for="codusu" />
+                        <p:inputText id="codusu" value="#{usuarioController.selected.codusu}" title="#{vistas.CreateUsuarioTitle_codusu}" required="true" requiredMessage="#{vistas.CreateUsuarioRequiredMessage_codusu}"/>
+                        <p:outputLabel value="Nombres" for="nomusu" />
+                        <p:inputText id="nomusu" value="#{usuarioController.selected.nomusu}" title="#{vistas.CreateUsuarioTitle_nomusu}" />
+                        <p:outputLabel value="Usuario" for="usuusu" />
+                        <p:inputText maxlength="5" id="usuusu" value="#{usuarioController.selected.usuusu}" title="#{vistas.CreateUsuarioTitle_usuusu}" />
+                        <p:outputLabel value="Password" for="pwdusu"/>
+                        <p:password id="pwdusu" match="pwdusu2" value="#{usuarioController.selected.pwdusu}" title="#{vistas.CreateUsuarioTitle_pwdusu}" feedback="true"/>
+                        <p:outputLabel value="Repetir Password" for="pwdusu2"/>
+                        <p:password id="pwdusu2" value="#{usuarioController.selected.pwdusu}" title="#{vistas.CreateUsuarioTitle_pwdusu}" feedback="true"/>
+                        <p:outputLabel value="DNI" for="dniusu" />
+                        <p:inputMask mask="99999999" id="dniusu" value="#{usuarioController.selected.dniusu}" title="#{vistas.CreateUsuarioTitle_dniusu}" />
+                        <p:outputLabel value="Ingreso" for="ingusu" />
+                        <p:calendar id="ingusu" pattern="MM/dd/yyyy" value="#{usuarioController.selected.ingusu}" title="#{vistas.EditUsuarioTitle_ingusu}"  showOn="button"/>
+                        <p:outputLabel value="Teléfono" for="telfusu" />
+                        <p:inputText id="telfusu" value="#{usuarioController.selected.telfusu}" title="#{vistas.CreateUsuarioTitle_telfusu}" />
+                        <p:outputLabel value="Nacimiento" for="fnacusu" />
+                        <p:calendar id="fnacusu" pattern="MM/dd/yyyy" value="#{usuarioController.selected.fnacusu}" title="#{vistas.EditUsuarioTitle_fnacusu}"  showOn="button"/>
+                        <p:outputLabel value="Cargo" for="cargusu" />
+                        <p:inputText id="cargusu" value="#{usuarioController.selected.cargusu}" title="#{vistas.CreateUsuarioTitle_cargusu}" />
+                        <p:outputLabel value="Dirección" for="dirusu" />
+                        <p:inputText id="dirusu" value="#{usuarioController.selected.dirusu}" title="#{vistas.CreateUsuarioTitle_dirusu}" />
+                        <p:outputLabel value="Ubigeo" for="ubigeo" />
+                        <p:inputText id="ubigeo" value="#{usuarioController.selected.ubigeo}" title="#{vistas.CreateUsuarioTitle_ubigeo}" />
+                        <p:outputLabel value="Nivel" for="levusu" />
+                        <p:selectOneMenu value="#{usuarioController.selected.levusu}" id="levusu" 
+                                         required="true" requiredMessage="Seleccione Nivel">
+                            <f:selectItem itemLabel="Seleccionar Nivel"/>
+                            <f:selectItem itemLabel="Administrador" itemValue="1"/>
+                            <f:selectItem itemLabel="Operativo" itemValue="2"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.encriptarCrear()}" 
+                                     value="#{vistas.Save}" update="display,:UsuarioListForm:datalist,:growl" 
+                                     oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="UsuarioCreateDialog.hide()" 
+                                     actionListener="#{usuarioController.prepareCreate()}"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

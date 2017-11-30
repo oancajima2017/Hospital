@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProveedorEditDlg" widgetVar="ProveedorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.EditProveedorTitle}">
+            <h:form id="ProveedorEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                        <p:outputLabel value="Código" for="codprov" />
+                        <p:inputText id="codprov" value="#{proveedorController.selected.codprov}" title="#{vistas.EditProveedorTitle_codprov}" required="true" requiredMessage="#{vistas.EditProveedorRequiredMessage_codprov}"/>
+                        <p:outputLabel value="Nombre" for="nomprov" />
+                        <p:inputText id="nomprov" value="#{proveedorController.selected.nomprov}" title="#{vistas.EditProveedorTitle_nomprov}" />
+                        <p:outputLabel value="RUC" for="rucprov" />
+                        <p:inputText id="rucprov" value="#{proveedorController.selected.rucprov}" title="#{vistas.EditProveedorTitle_rucprov}" />
+                        <p:outputLabel value="Dirección" for="dirprov" />
+                        <p:inputText id="dirprov" value="#{proveedorController.selected.dirprov}" title="#{vistas.EditProveedorTitle_dirprov}" />
+                        <p:outputLabel value="Laboratorio - Distribuidor" for="tipprov" />
+                        <p:inputText id="tipprov" value="#{proveedorController.selected.tipprov}" title="#{vistas.EditProveedorTitle_tipprov}" />
+                        <p:outputLabel value="Teléfono" for="telfprov" />
+                        <p:inputText id="telfprov" value="#{proveedorController.selected.telfprov}" title="#{vistas.EditProveedorTitle_telfprov}" />
+                        <p:outputLabel value="Nombre Comercial" for="comprov" />
+                        <p:inputText id="comprov" value="#{proveedorController.selected.comprov}" title="#{vistas.EditProveedorTitle_comprov}" />
+                        <p:outputLabel value="Abreviatura" for="abrprov" />
+                        <p:inputText id="abrprov" value="#{proveedorController.selected.abrprov}" title="#{vistas.EditProveedorTitle_abrprov}" />
+                        <p:outputLabel value="Código de Ubigeo" for="ubigeo" />
+                        <p:inputText id="ubigeo" value="#{proveedorController.selected.ubigeo}" title="#{vistas.EditProveedorTitle_ubigeo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proveedorController.update}" value="#{vistas.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProveedorEditDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="ProveedorEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetventaCreateDlg" widgetVar="DetventaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreateDetventaTitle}">
+            <h:form id="DetventaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detventaController.selected != null}">
+                        <p:outputLabel value="Código" for="detventaPK_nummed" />
+                        <p:inputText id="detventaPK_nummed" value="#{detventaController.selected.detventaPK.nummed}" title="#{vistas.CreateDetventaTitle_detventaPK_nummed}" required="true" requiredMessage="#{vistas.CreateDetventaRequiredMessage_detventaPK_nummed}"/>
+                        <p:outputLabel value="Número del Documento" for="detventaPK_ncodDoc" />
+                        <p:inputText id="detventaPK_ncodDoc" value="#{detventaController.selected.detventaPK.ncodDoc}" title="#{vistas.CreateDetventaTitle_detventaPK_ncodDoc}" required="true" requiredMessage="#{vistas.CreateDetventaRequiredMessage_detventaPK_ncodDoc}"/>
+                        <p:outputLabel value="Cantidad" for="cantvMed" />
+                        <p:inputText id="cantvMed" value="#{detventaController.selected.cantvMed}" title="#{vistas.CreateDetventaTitle_cantvMed}" />
+                        <p:outputLabel value="Stock" for="stotvDoc" />
+                        <p:inputNumber id="stotvDoc" value="#{detventaController.selected.stotvDoc}" title="#{vistas.CreateDetventaTitle_stotvDoc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detventaController.create}" value="#{vistas.Save}" update="display,:DetventaListForm:datalist,:growl" oncomplete="handleSubmit(args,'DetventaCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="DetventaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

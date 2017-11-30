@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.ViewProveedorTitle}">
+            <h:form id="ProveedorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                        <h:outputText value="Código"/>
+                        <h:outputText value="#{proveedorController.selected.codprov}" title="#{vistas.ViewProveedorTitle_codprov}"/>
+                        <h:outputText value="Nombre"/>
+                        <h:outputText value="#{proveedorController.selected.nomprov}" title="#{vistas.ViewProveedorTitle_nomprov}"/>
+                        <h:outputText value="RUC"/>
+                        <h:outputText value="#{proveedorController.selected.rucprov}" title="#{vistas.ViewProveedorTitle_rucprov}"/>
+                        <h:outputText value="Dirección"/>
+                        <h:outputText value="#{proveedorController.selected.dirprov}" title="#{vistas.ViewProveedorTitle_dirprov}"/>
+                        <h:outputText value="Laboratorio - Distribuidor"/>
+                        <h:outputText value="#{proveedorController.selected.tipprov}" title="#{vistas.ViewProveedorTitle_tipprov}"/>
+                        <h:outputText value="Teléfono"/>
+                        <h:outputText value="#{proveedorController.selected.telfprov}" title="#{vistas.ViewProveedorTitle_telfprov}"/>
+                        <h:outputText value="Nombre Comercial"/>
+                        <h:outputText value="#{proveedorController.selected.comprov}" title="#{vistas.ViewProveedorTitle_comprov}"/>
+                        <h:outputText value="Abreviatura"/>
+                        <h:outputText value="#{proveedorController.selected.abrprov}" title="#{vistas.ViewProveedorTitle_abrprov}"/>
+                        <h:outputText value="Código de Ubigeo"/>
+                        <h:outputText value="#{proveedorController.selected.ubigeo}" title="#{vistas.ViewProveedorTitle_ubigeo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vistas.Close}" onclick="ProveedorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicinaViewDlg" widgetVar="MedicinaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.ViewMedicinaTitle}">
+            <h:form id="MedicinaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{medicinaController.selected != null}">
+                        <h:outputText value="Código"/>
+                        <h:outputText value="#{medicinaController.selected.codmed}" title="#{vistas.ViewMedicinaTitle_codmed}"/>
+                        <h:outputText value="Nombre Genérico"/>
+                        <h:outputText value="#{medicinaController.selected.nomgenmed}" title="#{vistas.ViewMedicinaTitle_nomgenmed}"/>
+                        <h:outputText value="Nonbre Comercial"/>
+                        <h:outputText value="#{medicinaController.selected.nomcommed}" title="#{vistas.ViewMedicinaTitle_nomcommed}"/>
+                        <h:outputText value="Costo"/>
+                        <h:outputText value="#{medicinaController.selected.cosmed}" title="#{vistas.ViewMedicinaTitle_cosmed}"/>
+                        <h:outputText value="Precio"/>
+                        <h:outputText value="#{medicinaController.selected.precmed}" title="#{vistas.ViewMedicinaTitle_precmed}"/>
+                        <h:outputText value="Presentación"/>
+                        <h:outputText value="#{medicinaController.selected.premed}" title="#{vistas.ViewMedicinaTitle_premed}"/>
+                        <h:outputText value="Cantidad"/>
+                        <h:outputText value="#{medicinaController.selected.cantmed}" title="#{vistas.ViewMedicinaTitle_cantmed}"/>
+                        <h:outputText value="Observación"/>
+                        <h:outputText value="#{medicinaController.selected.obsmed}" title="#{vistas.ViewMedicinaTitle_obsmed}"/>
+                        <h:outputText value="Fecha"/>
+                        <h:outputText value="#{medicinaController.selected.fchmed}" title="#{vistas.ViewMedicinaTitle_fchmed}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{vistas.ViewMedicinaLabel_lotmed}"/>
+                        <h:outputText value="#{medicinaController.selected.lotmed}" title="#{vistas.ViewMedicinaTitle_lotmed}"/>
+                        <h:outputText value="#{vistas.ViewMedicinaLabel_codprov}"/>
+                        <h:outputText value="#{medicinaController.selected.codprov}" title="#{vistas.ViewMedicinaTitle_codprov}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vistas.Close}" onclick="MedicinaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

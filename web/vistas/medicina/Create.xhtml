@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicinaCreateDlg" widgetVar="MedicinaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreateMedicinaTitle}">
+            <h:form id="MedicinaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{medicinaController.selected != null}">
+                        <p:outputLabel value="Código" for="codmed" />
+                        <p:inputText id="codmed" value="#{medicinaController.selected.codmed}" title="#{vistas.CreateMedicinaTitle_codmed}" required="true" requiredMessage="#{vistas.CreateMedicinaRequiredMessage_codmed}"/>
+                        <p:outputLabel value="Nombre Genérico" for="nomgenmed" />
+                        <p:inputText id="nomgenmed" value="#{medicinaController.selected.nomgenmed}" title="#{vistas.CreateMedicinaTitle_nomgenmed}" />
+                        <p:outputLabel value="Nombre Comercial" for="nomcommed" />
+                        <p:inputText id="nomcommed" value="#{medicinaController.selected.nomcommed}" title="#{vistas.CreateMedicinaTitle_nomcommed}" />
+                        <p:outputLabel value="Costo" for="cosmed" />
+                        <p:inputText id="cosmed" value="#{medicinaController.selected.cosmed}" title="#{vistas.CreateMedicinaTitle_cosmed}" />
+                        <p:outputLabel value="Precio" for="precmed" />
+                        <p:inputText id="precmed" value="#{medicinaController.selected.precmed}" title="#{vistas.CreateMedicinaTitle_precmed}" />
+                        <p:outputLabel value="Presentación" for="premed" />
+                        <p:inputText id="premed" value="#{medicinaController.selected.premed}" title="#{vistas.CreateMedicinaTitle_premed}" />
+                        <p:outputLabel value="Cantidad" for="cantmed" />
+                        <p:inputText id="cantmed" value="#{medicinaController.selected.cantmed}" title="#{vistas.CreateMedicinaTitle_cantmed}" />
+                        <p:outputLabel value="Observación" for="obsmed" />
+                        <p:inputText id="obsmed" value="#{medicinaController.selected.obsmed}" title="#{vistas.CreateMedicinaTitle_obsmed}" />
+                        <p:outputLabel value="Fecha" for="fchmed" />
+                        <p:calendar id="fchmed" pattern="MM/dd/yyyy" value="#{medicinaController.selected.fchmed}" title="#{vistas.EditMedicinaTitle_fchmed}"  showOn="button"/>
+                        <p:outputLabel value="Lote" for="lotmed" />
+                        <p:inputText id="lotmed" value="#{medicinaController.selected.lotmed}" title="#{vistas.CreateMedicinaTitle_lotmed}" />
+                        <p:outputLabel value="Código de Proveedor" for="codprov" />
+                        <p:inputText id="codprov" value="#{medicinaController.selected.codprov}" title="#{vistas.CreateMedicinaTitle_codprov}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{medicinaController.create}" value="#{vistas.Save}" update="display,:MedicinaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MedicinaCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="MedicinaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

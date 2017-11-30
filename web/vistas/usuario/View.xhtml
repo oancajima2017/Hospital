@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.ViewUsuarioTitle}">
+            <h:form id="UsuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                        <h:outputText value="Código"/>
+                        <h:outputText value="#{usuarioController.selected.codusu}" title="#{vistas.ViewUsuarioTitle_codusu}"/>
+                        <h:outputText value="Nombres"/>
+                        <h:outputText value="#{usuarioController.selected.nomusu}" title="#{vistas.ViewUsuarioTitle_nomusu}"/>
+                        <h:outputText value="Usaurio"/>
+                        <h:outputText value="#{usuarioController.selected.usuusu}" title="#{vistas.ViewUsuarioTitle_usuusu}"/>
+                        <h:outputText value="DNI"/>
+                        <h:outputText value="#{usuarioController.selected.dniusu}" title="#{vistas.ViewUsuarioTitle_dniusu}"/>
+                        <h:outputText value="Ingreso"/>
+                        <h:outputText value="#{usuarioController.selected.ingusu}" title="#{vistas.ViewUsuarioTitle_ingusu}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Teléfono"/>
+                        <h:outputText value="#{usuarioController.selected.telfusu}" title="#{vistas.ViewUsuarioTitle_telfusu}"/>
+                        <h:outputText value="Nacimiento"/>
+                        <h:outputText value="#{usuarioController.selected.fnacusu}" title="#{vistas.ViewUsuarioTitle_fnacusu}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="Cargo"/>
+                        <h:outputText value="#{usuarioController.selected.cargusu}" title="#{vistas.ViewUsuarioTitle_cargusu}"/>
+                        <h:outputText value="Dirección"/>
+                        <h:outputText value="#{usuarioController.selected.dirusu}" title="#{vistas.ViewUsuarioTitle_dirusu}"/>
+                        <h:outputText value="Ubigeo"/>
+                        <h:outputText value="#{usuarioController.selected.ubigeo}" title="#{vistas.ViewUsuarioTitle_ubigeo}"/>
+                        <h:outputText value="Nivel"/>
+                        <p:outputLabel value="#{usuarioController.selected.level}"/>
+                </p:panelGrid>
+                <p:commandButton value="Cerrar" onclick="UsuarioViewDialog.hide()"/>
+            </h:panelGroup>
+        </h:form>
+    </p:dialog>
+
+</ui:composition>
+</html>

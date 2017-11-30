@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/#{usuarioController.template}">
+        <ui:define name="title">
+            <h:outputText value="#{vistas.ListUbigeoTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="UbigeoListForm">
+                <p:panel header="Tabla Ubigeo">
+                    
+                    <!--PRIMER COMBO -->
+                    <p:selectOneMenu value="#{ubigeoController.selecdepartamento}">
+                        <f:selectItem itemLabel="seleccione" 
+                                      itemValue="" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{ubigeoController.lstdpt}" 
+                                       var="dpt" itemLabel="#{dpt.dpto}"
+                                       itemValue="#{dpt}"/>
+                        <p:ajax event="change" 
+                                update="pro" 
+                                listener="#{ubigeoController.cambiaprov()}"/>
+                    </p:selectOneMenu> 
+                    
+                    
+                    <!--SEGUNDO COMBO -->
+                    <p:selectOneMenu id="pro" value="#{ubigeoController.selecdeprov}">
+                        <f:selectItem itemLabel="seleccione"
+                                      itemValue="" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{ubigeoController.lstpro}" 
+                                       var="prov" 
+                                       itemLabel="#{prov.prov}" 
+                                       itemValue="#{prov}"/>
+                        <p:ajax event="change" 
+                                update="dist"
+                                listener="#{ubigeoController.cambiDistri()}"/>
+                    </p:selectOneMenu> 
+                    
+                    
+                    <!--TERCER COMBO -->
+                    <p:selectOneMenu id="dist" value="#{ubigeoController.ver}">
+                        <f:selectItem itemLabel="seleccione"
+                                      itemValue="" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{ubigeoController.lstdist}"
+                                       var="dis"
+                                       itemLabel="#{dis.dist}"
+                                       itemValue="#{dis.ubigeo}"/>
+                       
+                    </p:selectOneMenu> 
+                    
+                    <p:dataTable id="datalist" value="#{ubigeoController.items}" var="item"
+                                 selectionMode="single" selection="#{ubigeoController.selected}"
+                                 paginator="true" filteredValue="#{ubigeoController.lstUbigeo}"
+                                 rowKey="#{item.ubigeo}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="UBIGEO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ubigeo}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.dpto}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="DEPARTAMENTO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dpto}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.prov}">
+                            <f:facet name="header">
+                                <h:outputText value="PROVINCIA"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prov}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.dist}">
+                            <f:facet name="header">
+                                <h:outputText value="DISTRITO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dist}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{vistas.Create}" actionListener="#{ubigeoController.prepareCreate}" update=":UbigeoCreateForm" oncomplete="PF('UbigeoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{vistas.View}" update=":UbigeoViewForm" oncomplete="PF('UbigeoViewDialog').show()" disabled="#{empty ubigeoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{vistas.Edit}" update=":UbigeoEditForm" oncomplete="PF('UbigeoEditDialog').show()" disabled="#{empty ubigeoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{vistas.Delete}" actionListener="#{ubigeoController.destroy}" update=":growl,datalist" disabled="#{empty ubigeoController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

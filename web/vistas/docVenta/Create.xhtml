@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocVentaCreateDlg" widgetVar="DocVentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreateDocVentaTitle}">
+            <h:form id="DocVentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{docVentaController.selected != null}">
+                        <p:outputLabel value="Código" for="ncodDoc" />
+                        <p:inputText id="ncodDoc" value="#{docVentaController.selected.ncodDoc}" title="#{vistas.CreateDocVentaTitle_ncodDoc}" required="true" requiredMessage="El Campo es Obligatorio"/>
+                        <p:outputLabel value="Número Documento" for="numDoc" />
+                        <p:inputText id="numDoc" value="#{docVentaController.selected.numDoc}" title="#{vistas.CreateDocVentaTitle_numDoc}" required="true" requiredMessage="El Campo es Obligatorio"/>
+                        <p:outputLabel value="Documento" for="tipDoc" />
+                        <p:inputText id="tipDoc" value="#{docVentaController.selected.tipDoc}" title="#{vistas.CreateDocVentaTitle_tipDoc}" validator="#{letrasBean.soloLetras}" />
+                        <p:outputLabel value="Ingreso del Documento" for="fchingDoc" />
+                        <p:calendar id="fchingDoc" pattern="MM/dd/yyyy" value="#{docVentaController.selected.fchingDoc}" title="#{vistas.EditDocVentaTitle_fchingDoc}"  showOn="button"/>
+                        <p:outputLabel value="Monto del Documento" for="montDoc" />
+                        <p:inputNumber id="montDoc" value="#{docVentaController.selected.montDoc}" title="#{vistas.CreateDocVentaTitle_montDoc}"/>
+                        <p:outputLabel value="Donación" for="dondoc" />
+                      <p:inputNumber id="dondoc" value="#{docVentaController.selected.dondoc}" title="#{vistas.CreateDocVentaTitle_dondoc}"/>
+                        <p:outputLabel value="Observación" for="obsDoc" />
+                        <p:inputText id="obsDoc" value="#{docVentaController.selected.obsDoc}" title="#{vistas.CreateDocVentaTitle_obsDoc}" />
+                        <p:outputLabel value="Código Paciente" for="codpac" />
+                        <p:inputText id="codpac" value="#{docVentaController.selected.codpac}" title="#{vistas.CreateDocVentaTitle_codpac}" />
+                       
+                        
+                       
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{docVentaController.create}" value="#{vistas.Save}" update="display,:DocVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'DocVentaCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="DocVentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

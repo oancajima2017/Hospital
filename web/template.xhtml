@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+        <title>Admin Panel</title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="myself.css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.2/dialog-polyfill.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.2.1/material.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://code.getmdl.io/1.2.1/material.blue-light_blue.min.css" rel="stylesheet" type="text/css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputScript library="js" name="myself.js"/>
+
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer" >
+            <header class="mdl-layout__header" style="background: #ff0000;">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">
+                        <div class="mdl-textfield mdl-js-textfield search">
+                            <input class="mdl-textfield__input" type="text" id="search"/>
+                            <label class="mdl-textfield__label" for="search" style="color: #ffffff">Search</label>
+                        </div>
+                    </span>
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Right aligned menu below button -->
+                    <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">arrow_drop_down</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                        <li class="mdl-menu__item">Salir</li>
+                        <li class="mdl-menu__item">Editar</li>
+                        
+           
+                    </ul>
+                    <img src="../../resources/img/avatars/9.jpg" alt="user_image" class="user_img"/>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer sidenav">
+                <span class="mdl-layout-title mdl-color-blue mdl-color-text--blue-grey-50">Title</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="vistas/detventa/List.xhtml"><i class="material-icons">dashboard</i><span>DETALLE VENTA</span></a>
+                    <a class="mdl-navigation__link" href="../docVenta/List.xhtml"><i class="material-icons">description</i><span>VENTA</span></a>
+                    <a class="mdl-navigation__link active" href="../medicina/List.xhtml"><i class="material-icons">account_box</i><span>MEDICINA</span></a>
+                     <a class="mdl-navigation__link active" href="../paciente/List.xhtml"><i class="material-icons">group</i><span>PACIENTES</span></a>
+                      <a class="mdl-navigation__link active" href="../proveedor/List.xhtml"><i class="material-icons">face</i><span>PROVEDOR</span></a>
+                       <a class="mdl-navigation__link active" href="../ubigeo/List.xhtml"><i class="material-icons">account_box</i><span>UBIGEO</span></a>
+                        <a class="mdl-navigation__link active" href="../usuario/List.xhtml"><i class="material-icons">group</i><span>USUARIO</span></a>
+                        
+                </nav>
+            </div>
+            <main class="mdl-layout__content">
+                <ui:insert name="body"/>
+            </main>
+        </div>
+        
+
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.2.1/material.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.2/dialog-polyfill.min.js" type="text/javascript"></script>
+    </h:body>
+
+</html>
